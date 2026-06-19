@@ -5,12 +5,12 @@
  */
 
 export const SITE = {
-  designerName: "Atelier Nomine",
+  designerName: "Vasco Macau",
   role: "Senior UI Lead",
   discipline: "Brand Designer",
   location: "Lisbon",
   availability: "Q2",
-  email: "hello@ateliernomine.studio",
+  email: "hello@vascomacau.studio",
   thesisStart: "I design the",
   thesisAccent: "surfaces",
   thesisEnd: "people trust.",

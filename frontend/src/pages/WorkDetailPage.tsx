@@ -79,6 +79,7 @@ export default function WorkDetailPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: DUR.held, ease: EASE.cinematic, delay: 1.0 }}
         className="relative mt-24 aspect-[16/9] max-w-[1600px] mx-auto overflow-hidden"
+        style={{ viewTransitionName: "artifact" }}
       >
         <ProjectArtifact index={project.index} color={project.color} />
       </motion.div>

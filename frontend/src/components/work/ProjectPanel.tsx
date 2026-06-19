@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { DUR, EASE } from "@/lib/motion";
@@ -17,6 +18,7 @@ interface ProjectPanelProps {
  * Composition alternates left/right. Type cascades in three beats.
  */
 export const ProjectPanel = ({ project, index, reverse }: ProjectPanelProps) => {
+  const [morphing, setMorphing] = useState(false);
   return (
     <article
       data-testid={`project-panel-${project.slug}`}
@@ -34,6 +36,7 @@ export const ProjectPanel = ({ project, index, reverse }: ProjectPanelProps) => 
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: DUR.cinematic, ease: EASE.cinematic }}
           className="lg:col-span-7 [direction:ltr] relative aspect-[4/3] lg:aspect-[5/4] overflow-hidden"
+          style={{ viewTransitionName: morphing ? "artifact" : undefined }}
         >
           <ProjectArtifact index={project.index} color={project.color} />
           <div className="absolute inset-0 border border-[#F2EBDD]/10 pointer-events-none" />
@@ -122,7 +125,9 @@ export const ProjectPanel = ({ project, index, reverse }: ProjectPanelProps) => 
           >
             <Link
               to={`/work/${project.slug}`}
+              viewTransition
               data-testid={`enter-project-${project.slug}`}
+              onClick={() => setMorphing(true)}
               className="inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] uppercase text-[#F2EBDD]/70 hover:text-[#F2EBDD]"
               style={{ transition: `color ${DUR.quick}s ${EASE.quiet}` }}
             >

@@ -194,6 +194,32 @@ body {
 }
 
 /* ============================================================
+   View Transitions API — shared-element morph (reel/work → detail)
+   ============================================================ */
+@supports (view-transition-name: a) {
+    @media (prefers-reduced-motion: no-preference) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation-duration: 520ms;
+            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Shared artifact element keeps a continuous morph */
+        ::view-transition-old(artifact),
+        ::view-transition-new(artifact) {
+            animation-duration: 1100ms;
+            animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+            mix-blend-mode: normal;
+        }
+
+        ::view-transition-group(artifact) {
+            animation-duration: 1100ms;
+            animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+        }
+    }
+}
+
+/* ============================================================
    shadcn debug wrapper (kept)
    ============================================================ */
 @layer base {
