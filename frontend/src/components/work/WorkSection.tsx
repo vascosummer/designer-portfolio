@@ -24,6 +24,9 @@ export const WorkSection = () => {
       });
   }, []);
 
+  // Selected Work — show only the featured ones (the deep dives)
+  const featured = projects.filter((p) => p.is_featured);
+
   return (
     <section
       data-testid="work-section"
@@ -51,8 +54,8 @@ export const WorkSection = () => {
         </motion.div>
       </div>
 
-      {/* Project panels */}
-      {projects.map((p, i) => (
+      {/* Project panels (featured only — full deep-dive treatment) */}
+      {featured.map((p, i) => (
         <ProjectPanel key={p.id} project={p} index={i} reverse={i % 2 === 1} />
       ))}
     </section>

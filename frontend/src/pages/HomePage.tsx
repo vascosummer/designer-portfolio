@@ -1,6 +1,7 @@
-import { HeroSectionV2 as HeroSection } from "@/components/hero/HeroSectionV2";
-// ↑ Experiment: Obsidian Assembly-inspired hero (material backdrop + fragmented type).
-//   To revert: change line above to `import { HeroSection } from "@/components/hero/HeroSection";`
+import { HeroSectionV3 as HeroSection } from "@/components/hero/HeroSectionV3";
+// ↑ Hybrid: V1 full 3D scene + V2 fragmented typography. No photo backdrop.
+//   To revert to V1 (clean 3D + left-aligned thesis):     HeroSection from "@/components/hero/HeroSection"
+//   To use V2 (Obsidian — photo backdrop + framed scene): HeroSectionV2 from "@/components/hero/HeroSectionV2"
 import { ReelSection } from "@/components/reel/ReelSection";
 import { WorkSection } from "@/components/work/WorkSection";
 import { PracticeSection } from "@/components/practice/PracticeSection";
