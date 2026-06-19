@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   QUIET CRAFT — Design Tokens
+   Cinematic dark-mode portfolio
+   ============================================================ */
+
+:root {
+    /* Palette — film-black, bone-white, copper accent */
+    --film-black: #0a0a0b;
+    --film-fog: #16161a;
+    --film-bone: #f2ebdd;
+    --film-bone-dim: rgba(242, 235, 221, 0.6);
+    --film-bone-faint: rgba(242, 235, 221, 0.35);
+    --film-copper: #a8643c;
+    --film-line: rgba(242, 235, 221, 0.12);
+
+    /* Type stacks */
+    --font-display: "Fraunces", "Times New Roman", serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+    /* Motion durations */
+    --dur-instant: 80ms;
+    --dur-quick: 180ms;
+    --dur-base: 320ms;
+    --dur-considered: 520ms;
+    --dur-deliberate: 720ms;
+    --dur-cinematic: 1100ms;
+    --dur-held: 1800ms;
+
+    /* Easings */
+    --ease-quiet: cubic-bezier(0.32, 0.08, 0.24, 1);
+    --ease-considered: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-dolly: cubic-bezier(0.65, 0, 0.35, 1);
+
+    /* shadcn surface tokens (kept for component compatibility) */
+    --background: 240 6% 5%;
+    --foreground: 40 33% 91%;
+    --card: 240 6% 5%;
+    --card-foreground: 40 33% 91%;
+    --popover: 240 6% 7%;
+    --popover-foreground: 40 33% 91%;
+    --primary: 40 33% 91%;
+    --primary-foreground: 240 6% 5%;
+    --secondary: 240 5% 10%;
+    --secondary-foreground: 40 33% 91%;
+    --muted: 240 5% 10%;
+    --muted-foreground: 40 12% 60%;
+    --accent: 240 5% 10%;
+    --accent-foreground: 40 33% 91%;
+    --destructive: 0 50% 40%;
+    --destructive-foreground: 40 33% 91%;
+    --border: 40 20% 90% / 0.08;
+    --input: 240 5% 12%;
+    --ring: 40 33% 91%;
+    --radius: 0;
+}
+
+* {
+    border-color: var(--film-line);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--film-black);
+    color: var(--film-bone);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+body {
+    cursor: none;
+}
+
+/* Mobile fallback — restore native cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection {
+    background: var(--film-bone);
+    color: var(--film-black);
+}
+
+/* ============================================================
+   Scrollbar (hidden — Lenis handles smooth scroll)
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* ============================================================
+   Typography utilities
+   ============================================================ */
+.font-display {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "ss02";
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+}
+
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--film-bone-faint);
+}
+
+/* ============================================================
+   Grain overlay (animated film grain at 5% opacity, 24fps)
+   ============================================================ */
+.grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    animation: grain 0.4s steps(6) infinite;
+}
+
+@keyframes grain {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-4%, 2%); }
+    40% { transform: translate(3%, -3%); }
+    60% { transform: translate(-2%, 4%); }
+    80% { transform: translate(4%, -1%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* ============================================================
+   Vignette atmosphere
+   ============================================================ */
+.vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 80;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 60%,
+        rgba(0, 0, 0, 0.45) 100%
+    );
+}
+
+/* ============================================================
+   Hairline rule — the leitmotif
+   ============================================================ */
+.hairline {
+    display: block;
+    height: 1px;
+    background: var(--film-bone);
+    opacity: 0.4;
+    transform-origin: left;
+}
+
+/* ============================================================
+   Reduced motion contract
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+    .grain {
+        animation: none;
+    }
+}
+
+/* ============================================================
+   shadcn debug wrapper (kept)
+   ============================================================ */
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin: inherit;
+        padding: inherit;
+        gap: inherit;
+        border-width: inherit;
+        border-style: inherit;
+        border-color: inherit;
+    }
+}
