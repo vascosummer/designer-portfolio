@@ -1,4 +1,6 @@
-import { HeroSection } from "@/components/hero/HeroSection";
+import { HeroSectionV2 as HeroSection } from "@/components/hero/HeroSectionV2";
+// ↑ Experiment: Obsidian Assembly-inspired hero (material backdrop + fragmented type).
+//   To revert: change line above to `import { HeroSection } from "@/components/hero/HeroSection";`
 import { ReelSection } from "@/components/reel/ReelSection";
 import { WorkSection } from "@/components/work/WorkSection";
 import { PracticeSection } from "@/components/practice/PracticeSection";
